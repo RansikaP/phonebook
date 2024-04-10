@@ -34,10 +34,12 @@ app.get('/api/persons', (request, response) => {
 app.get('/info', (request, response) => {
     const datetime = new Date()
 
-    response.send(
-        `<p>Phonebook has info for ${persons.length}</p>
-        <p>${datetime}</p>`
-    )
+    userModel.count({}).then(count => {
+        response.send(
+            `<p>Phonebook has info for ${count}</p>
+            <p>${datetime}</p>`
+        )
+    })
 })
 
 app.get('/api/persons/:id', (request, response) => {
