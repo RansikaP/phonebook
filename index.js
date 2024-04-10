@@ -34,7 +34,7 @@ app.get('/api/persons', (request, response) => {
 app.get('/info', (request, response) => {
     const datetime = new Date()
 
-    userModel.count({}).then(count => {
+    Person.find({}).count().then(count => {
         response.send(
             `<p>Phonebook has info for ${count}</p>
             <p>${datetime}</p>`
