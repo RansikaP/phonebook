@@ -69,18 +69,18 @@ app.post('/api/persons', async (request, response, next) => {
         name: body.name,
         number: body.number
     })
-    
+
     person.save()
         .then(savedPerson => {
             response.json(savedPerson)
         })
-        .catch(error => next(error))        
+        .catch(error => next(error))
 })
 
 app.put('/api/persons/:id', (request, response, next) => {
     Person.findByIdAndUpdate(
-        { _id: request.params.id}, 
-        request.body, 
+        { _id: request.params.id },
+        request.body,
         { new: true, runValidators: true, context: 'query' }
     )
         .then(updatedPerson => {
